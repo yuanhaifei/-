@@ -20,7 +20,7 @@ public class RainManageDao extends BaseDao{
         RainQuality rainQuality=null;
         try {
             //编写Sql语句
-            String Sql = "select id,districtName,monitorTime,rain,monitoringStation,monitoringAddress from rainquality";
+            String Sql = "select id,districtName,monitorTime,rain,monitoringStation,monitoringAddress from rainquality ORDER BY monitorTime DESC ";
             //获取数据库连接
             conn = BaseDao.getConn();
             //创建执行Sql的对象

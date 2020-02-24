@@ -1,6 +1,7 @@
 <%-- Created by IntelliJ IDEA. --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html>
 <head>
     <title>雨量监测信息</title>
     <style>
@@ -39,12 +40,28 @@
                 <td>${info.rain}</td>
                 <td>${info.monitoringStation}</td>
                 <td>${info.monitoringAddress}</td>
-                <td><a href="void(0)" onclick="">删除</a></td>
+                <td><a href="javascript:void(0);" onclick="del(${info.id})">删除</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <div class="add"><a href="void(0)">新增雨量监测信息</a></div>
+    <div class="add"><a href="add.jsp">新增雨量监测信息</a></div>
 </div>
+<script src="statics/js/jquery-1.8.3.min.js"></script>
+<script>
+    function del(id) {
+        if (confirm("确定要删除吗？")) {
+            $.get("del", {rId: id}, function (data) {
+                if (data == "true") {
+                    alert("删除成功！");
+                    location.reload();
+                } else {
+                    alert("删除失败");
+                    return
+                }
+            })
+        }
+    }
+</script>
 </body>
 </html>
